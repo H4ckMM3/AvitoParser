@@ -31,13 +31,13 @@ def get_listings():
                 link = link_element.get_attribute("href")
                 
                 try:
-                    price_element = item.find_element(By.CSS_SELECTOR, "span[data-marker='price']")
+                    price_element = item.find_element(By.CSS_SELECTOR, "span[data-marker='item-price-value']")
                     price = price_element.text.strip() if price_element.text else ""
                 except:
                     price = "Цена не найдена или не указана"
                     
                 try:
-                    title_element = item.find_element(By.CSS_SELECTOR, "h3[data-marker='title']")
+                    title_element = item.find_element(By.CSS_SELECTOR, "h2[itemprop='name']")
                     title = title_element.text.strip() if title_element.text else ""
                 except:
                     title = "Заголовок не найден или не указан"

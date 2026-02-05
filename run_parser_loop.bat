@@ -4,7 +4,8 @@ call .venv\Scripts\activate.bat
 
 :loop
 python main.py
-echo Следующая проверка через 10 минут...
-timeout /t 600 /nobreak
+echo Следующая проверка через 6 часов...
+timeout /t 21600 /nobreak
 
 goto loop
+chcp 65001

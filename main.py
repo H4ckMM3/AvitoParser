@@ -30,7 +30,7 @@ def normalize_link(link):
     return link.split('?')[0] if link else link
 
 def send_notification(item):
-    message = f"🔔 Объявление уже существует: {item['title']}\n💰 Цена: {item['price']}\n🔗 {item['link']}"
+    message = f"🔔 Новое объявление: {item['title']}\n💰 Цена: {item['price']}\n🔗 {item['link']}"
     send_message(message)
         
 def main():
@@ -39,9 +39,10 @@ def main():
     listings = get_listings()
     for item in listings:
         if normalize_link(item['link']) not in old_links:
-            message = f"🔔 Объявление уже существует: {item['title']}\n💰 Цена: {item['price']}\n🔗 {item['link']}"
-            send_message(message)
+            send_notification(item)
             new_links.add(normalize_link(item['link']))
+        else:
+            print("Старое объявление")
     all_links = old_links.union(new_links)
     save_links(all_links)
     print(f"Найдено {len(new_links)} новых объявлений")
